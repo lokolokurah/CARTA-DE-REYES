@@ -1,164 +1,167 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Carta de Reyes</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Carta de Reyes — Super Navideña</title>
 
-  <!-- Tipografías festivas -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet"/>
 
   <style>
     :root{
-      --bg1:#0b1b2b; --bg2:#0f3b52; --accent:#ffd166; --accent2:#ef476f; --paper:#fffaf2; --ink:#1f2937; --link:#2dd4bf;
+      --red:#b91c1c; --green:#065f46; --gold:#facc15; --white:#fff; --paper:#fffaf2; --ink:#1f2937; --link:#0ea5e9;
     }
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
+    html,body{height:100%; margin:0}
     body{
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--ink);
-      background: radial-gradient(1200px 600px at 80% -10%, rgba(255,209,102,.12), transparent),
-                  linear-gradient(135deg,var(--bg1),var(--bg2));
+      background:
+        radial-gradient(1000px 600px at 80% -20%, rgba(250,204,21,.25), transparent 70%),
+        linear-gradient(135deg, #0b1220 0%, #102a43 50%, #0f2741 100%);
       overflow-x:hidden;
     }
 
-    /* Copos de nieve animados */
-    .snow{position:fixed; inset:0; pointer-events:none; z-index:0}
-    .flake{
-      position:absolute; top:-2rem; color:#fff; opacity:.9; filter:drop-shadow(0 2px 2px rgba(0,0,0,.25));
+    /* Estrellas brillantes */
+    .stars{position:fixed; inset:0; z-index:0; pointer-events:none}
+    .star{position:absolute; width:2px; height:2px; background:rgba(255,255,255,.9); border-radius:50%;
+      animation: twinkle 2.5s ease-in-out infinite;
+      box-shadow: 0 0 12px rgba(255,255,255,.8);
+    }
+    @keyframes twinkle{
+      0%,100%{opacity:.2; transform:scale(1)}
+      50%{opacity:1; transform:scale(1.8)}
+    }
+
+    /* Copos de nieve */
+    .snow{position:fixed; inset:0; z-index:1; pointer-events:none}
+    .flake{position:absolute; top:-2rem; color:#fff; opacity:.95; font-size:var(--size);
+      filter:drop-shadow(0 2px 2px rgba(0,0,0,.25));
+      left:var(--left);
       animation: fall var(--dur) linear infinite, sway var(--sway) ease-in-out infinite;
-      font-size: var(--size);
-      left: var(--left);
       animation-delay: var(--delay);
     }
     @keyframes fall{to{transform:translateY(110vh)}}
-    @keyframes sway{50%{transform:translateY(50vh) translateX(20px)}}
+    @keyframes sway{50%{transform:translateY(55vh) translateX(20px)}}
 
-    /* Contenedor con papel */
-    .wrap{
-      position:relative; z-index:1; padding:4rem 1.25rem;
-      display:flex; justify-content:center;
+    /* Guirnalda de luces SVG */
+    .garland{position:fixed; top:0; left:0; width:100%; z-index:2; pointer-events:none}
+    .garland svg{width:100%; height:auto; display:block}
+    .bulb{transform-origin:center; animation: glow 1.6s ease-in-out infinite}
+    .b1{animation-delay:0s} .b2{animation-delay:.3s} .b3{animation-delay:.6s} .b4{animation-delay:.9s} .b5{animation-delay:1.2s}
+    @keyframes glow{
+      0%,100%{filter: drop-shadow(0 0 0 rgba(255,255,255,0)); opacity:.75}
+      50%{filter: drop-shadow(0 0 8px rgba(255,255,255,.9)); opacity:1; transform:scale(1.08)}
     }
+
+    /* Contenedor estilo pergamino */
+    .wrap{position:relative; z-index:3; padding:8rem 1rem 4rem; display:flex; justify-content:center}
     .page{
-      width:min(900px, 92vw);
-      background:var(--paper);
+      width:min(980px,92vw);
+      background: var(--paper);
       border-radius:24px;
-      box-shadow:
-        0 30px 80px rgba(0,0,0,.35),
-        inset 0 0 0 12px rgba(255,255,255,.9),
-        inset 0 0 0 2px rgba(0,0,0,.06);
       padding:2.2rem;
+      box-shadow:0 40px 90px rgba(0,0,0,.35), inset 0 0 0 14px rgba(255,255,255,.85);
       position:relative;
     }
 
-    /* Borde decorado */
-    .page::before, .page::after{
-      content:""; position:absolute; inset:18px;
-      border:2px dashed rgba(239,71,111,.35); border-radius:18px;
-      pointer-events:none;
-    }
-    .page::after{
-      inset:12px; border-color: rgba(45,212,191,.35);
-      mix-blend-mode:multiply;
-    }
-
-    header{
-      text-align:center; margin-bottom:1.8rem;
+    header{text-align:center; margin-bottom:1.6rem}
+    .script-title{
+      font-family:"Great Vibes", cursive;
+      font-size:clamp(2.4rem,6vw,3.8rem);
+      color:#b91c1c;
+      text-shadow:0 3px 0 #fff, 0 6px 24px rgba(0,0,0,.25);
     }
     .title{
-      font-family:"Playfair Display", serif;
-      font-size:clamp(2rem, 5vw, 3.2rem);
-      line-height:1.1; color:#fff;
-      background: linear-gradient(90deg, #ffd166, #ef476f 60%, #2dd4bf);
+      font-family:"Playfair Display", serif; font-weight:700;
+      font-size:clamp(2rem,5vw,3rem);
+      background: linear-gradient(90deg, #b91c1c, #f59e0b 40%, #065f46 80%);
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      text-shadow: 0 2px 12px rgba(255,209,102,.25);
+      margin:.2rem 0 .4rem;
     }
-    .subtitle{
-      margin-top:.5rem; font-weight:600; color:#334155;
-    }
+    .subtitle{color:#334155; font-weight:600}
 
     /* Secciones */
-    section{margin:1.5rem 0 1rem}
-    h2{
-      font-family:"Playfair Display", serif; font-size:1.35rem; margin:0 0 .75rem;
-      display:flex; align-items:center; gap:.6rem;
-    }
-    h2 .badge{
-      background:linear-gradient(135deg, #ef476f, #ffd166);
-      color:#0b1b2b; font-weight:700; border-radius:10px; padding:.25rem .55rem; font-size:.9rem;
-      box-shadow: 0 6px 16px rgba(239,71,111,.25);
+    section{margin:1.4rem 0 1rem}
+    h2{font-family:"Playfair Display", serif; font-size:1.35rem; margin:0 0 .9rem; color:#0f172a}
+    .badge{
+      background:linear-gradient(135deg, #cfffda, #ffb0b0);
+      color:#fff; font-weight:700; border-radius:10px; padding:.25rem .6rem; font-size:.95rem;
     }
 
-    /* Lista bonita */
-    ol{list-style:none; padding:0; margin:0; display:grid; gap:.9rem}
-    li{
-      background:#fff; border-radius:14px; padding:1rem .9rem;
-      border:1px solid rgba(0,0,0,.08);
-      box-shadow: 0 6px 18px rgba(0,0,0,.06);
-    }
-    .item{
-      display:flex; gap:.8rem; align-items:flex-start;
-    }
-    .num{
-      min-width:2.2rem; height:2.2rem; border-radius:8px; display:grid; place-items:center;
-      background:linear-gradient(135deg,#2dd4bf,#3b82f6); color:white; font-weight:700;
-      box-shadow: 0 6px 16px rgba(59,130,246,.25);
-    }
+    /* Lista */
+    ol{list-style:none; padding:0; margin:0; display:grid; gap:1rem}
+    li{background:#fff; border-radius:16px; padding:1rem .95rem; border:1px solid rgba(0,0,0,.08); box-shadow:0 6px 18px rgba(0,0,0,.06)}
+    .item{display:flex; gap:.9rem; align-items:flex-start}
+    .num{min-width:2.4rem; height:2.4rem; border-radius:10px; display:grid; place-items:center;
+      background:linear-gradient(135deg,#b91c1c,#065f46); color:#fff; font-weight:700}
     .content{flex:1}
     .title-line{font-weight:700; color:#0f172a}
     .meta{color:#475569; font-size:.95rem; margin:.25rem 0}
-    .links a{
-      display:inline-block; margin-right:.5rem; margin-top:.35rem; color:var(--link);
-      text-decoration:none; font-weight:600;
-    }
-    .links a:hover{ text-decoration:underline }
+    .links a{color:var(--link); text-decoration:none; font-weight:600}
+    .links a:hover{text-decoration:underline}
 
-    /* Footer */
-    .footer{
-      margin-top:1.8rem; padding-top:1rem; border-top:1px dashed rgba(0,0,0,.12);
-      text-align:center; color:#334155;
-    }
-
-    /* Responsive tweaks */
-    @media (max-width:560px){
-      .page{padding:1.2rem}
-      .item{flex-direction:column}
-      .num{align-self:flex-start}
-    }
+    .footer{text-align:center; margin-top:2rem; color:#334155}
+    .desert{position:fixed; bottom:0; left:0; width:100%; z-index:2; pointer-events:none}
   </style>
 </head>
 <body>
 
-  <!-- Copos de nieve -->
-  <div class="snow" aria-hidden="true">
-    <!-- Generados a mano para evitar JS; cambia --left/--size/--dur para variedad -->
-    <div class="flake" style="--left:8%;  --size:1.2rem; --dur:9s;  --sway:6s;  --delay:-1s;">❄</div>
-    <div class="flake" style="--left:18%; --size:1rem;  --dur:11s; --sway:7s;  --delay:-3s;">✦</div>
-    <div class="flake" style="--left:28%; --size:1.4rem; --dur:13s; --sway:8s;  --delay:-2s;">❅</div>
-    <div class="flake" style="--left:39%; --size:1rem;  --dur:10s; --sway:6.5s; --delay:-4s;">✶</div>
-    <div class="flake" style="--left:51%; --size:1.3rem; --dur:12s; --sway:7.5s; --delay:-2s;">❄</div>
-    <div class="flake" style="--left:63%; --size:.95rem; --dur:10s; --sway:6.2s; --delay:-5s;">✦</div>
-    <div class="flake" style="--left:74%; --size:1.5rem; --dur:14s; --sway:8.2s; --delay:-1s;">❅</div>
-    <div class="flake" style="--left:86%; --size:1rem;  --dur:11s; --sway:7s;  --delay:-3s;">✶</div>
+  <!-- Estrellas -->
+  <div class="stars">
+    <div class="star" style="left:10%; top:20%; animation-delay:.2s"></div>
+    <div class="star" style="left:30%; top:40%; animation-delay:.6s"></div>
+    <div class="star" style="left:50%; top:10%; animation-delay:1s"></div>
+    <div class="star" style="left:70%; top:60%; animation-delay:.4s"></div>
+    <div class="star" style="left:90%; top:30%; animation-delay:.8s"></div>
+  </div>
+
+  <!-- Copos -->
+  <div class="snow">
+    <div class="flake" style="--left:15%; --size:1.2rem; --dur:9s; --sway:6s; --delay:-1s;">❄</div>
+    <div class="flake" style="--left:35%; --size:1rem; --dur:11s; --sway:7s; --delay:-3s;">✦</div>
+    <div class="flake" style="--left:55%; --size:1.4rem; --dur:13s; --sway:8s; --delay:-2s;">❅</div>
+    <div class="flake" style="--left:75%; --size:1rem; --dur:10s; --sway:6.5s; --delay:-4s;">✶</div>
+  </div>
+
+  <!-- Guirnalda -->
+  <div class="garland">
+    <svg viewBox="0 0 1200 150" preserveAspectRatio="none">
+      <path d="M0,40 C200,90 400,10 600,70 C800,130 1000,30 1200,80"
+            fill="none" stroke="#3f3f46" stroke-width="4" stroke-linecap="round"/>
+      <g>
+        <circle class="bulb b1" cx="80"  cy="60" r="10" fill="#ef4444"/>
+        <circle class="bulb b2" cx="210" cy="40" r="10" fill="#f59e0b"/>
+        <circle class="bulb b3" cx="340" cy="80" r="10" fill="#22c55e"/>
+        <circle class="bulb b4" cx="480" cy="30" r="10" fill="#60a5fa"/>
+        <circle class="bulb b5" cx="610" cy="90" r="10" fill="#ef4444"/>
+        <circle class="bulb b1" cx="740" cy="50" r="10" fill="#f59e0b"/>
+        <circle class="bulb b2" cx="870" cy="100" r="10" fill="#22c55e"/>
+        <circle class="bulb b3" cx="1000" cy="35" r="10" fill="#60a5fa"/>
+        <circle class="bulb b4" cx="1130" cy="85" r="10" fill="#ef4444"/>
+      </g>
+    </svg>
   </div>
 
   <div class="wrap">
     <main class="page" role="document" aria-label="Carta de Reyes">
       <header>
-        <h1 class="title">Carta de Reyes</h1>
-        <p class="subtitle">Me he portado regular, pero con estilo. Aquí va mi lista guapísima.</p>
+        <div class="script-title">Queridos Reyes Magos</div>
+        <h1 class="title">Carta de Reyes — edición navideña</h1>
+        <p class="subtitle">Me he portado regular, pero con estilo. Aquí va mi lista guapísima y festiva. 🎄✨</p>
       </header>
 
       <section>
-        <h2><span class="badge">Tecnología y gadgets</span></h2>
+        <h2><span class="badge">🎅🏿🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎅🏿</span></h2>
         <ol>
           <li>
             <div class="item">
               <div class="num">1</div>
               <div class="content">
-                <div class="title-line">Big Screen V2 (con eye tracking ya sería la ostia)</div>
-                <div class="meta">1369€ o 1549€ con eye tracking</div>
-                <div class="links"><a href="https://store.bigscreenvr.com/products/bigscreen-beyond-2" target="_blank" rel="noopener">Enlace</a></div>
+                <div class="title-line">Big screen V2 (Con eye tracking ya sería la ostia)</div>
+                <div class="meta">[ 1369€ o 1549€ con eye tracking ]</div>
+                <div class="links"><a href="https://store.bigscreenvr.com/products/bigscreen-beyond-2?srsltid=AfmBOooF9E7w2WsTuzp62rr1w1subgKeU9V532wGEf0dmrRLuHBIflbi" target="_blank" rel="noopener">Enlace</a></div>
               </div>
             </div>
           </li>
@@ -167,9 +170,16 @@
             <div class="item">
               <div class="num">2</div>
               <div class="content">
-                <div class="title-line">Impresora 3D (380–430€)</div>
-                <div class="meta">Accesorios imprescindibles: Resina ABS‑Like 8K/12K (gris), estación de lavado/curado (Elegoo Mercury Plus V3.0 o XS), guantes de nitrilo, alcohol isopropílico, alicates de corte y pintura acrílica.</div>
-                <div class="links"><a href="https://www.amazon.es/dp/B0D3HDLWXS" target="_blank" rel="noopener">Elegoo Saturn 4</a></div>
+                <div class="title-line">Tengo ganas si... IMPRESORA 3D [ 380-430€ ]</div>
+                <div class="meta">Una grandota, yo quiero mi figuraca. Si me pilláis la impresora, necesitaré aparte:</div>
+                <ul class="meta" style="margin:.5rem 0 .25rem .5rem">
+                  <li>Resina de Calidad (ABS-Like 8K/12K). Blanca o Gris, mejor Gris, para pintar sobre ella.</li>
+                  <li>Estación de Lavado y Curado (Elegoo Mercury Plus V3.0 o XS).</li>
+                  <li>Guantes de Nitrilo y Alcohol Isopropílico (para manejar la estación de lavado).</li>
+                  <li>Unos Alicates de Corte (Cortafríos) para quitar los soportes.</li>
+                  <li>Algo de pintura acrílica.</li>
+                </ul>
+                <div class="links"><a href="https://www.amazon.es/ELEGOO-Impresora-Inteligente-Impresi%C3%B3n-218-88x122-88x220/dp/B0D3HDLWXS/ref=mp_s_a_1_2_sspa?crid=YKLEZDFBXP4Z&dib=eyJ2IjoiMSJ9.18sMVKMH7Occ_D7nSsPuOkPMU30Ce9-h_DnwUvkeeHS8lCqZYoO-0jZ1uKyT4vKcXrWj1Kzy1mOqJyvgNGFzoJ87yrIjB27ARfi310AcBuzs9V5a36D67h3iJE_kinutfEQWSwQPdsinoOhb2cqY-OO1sI7zYVHPFrISyboX7-LGl8f-0yrKPUWXSndQwBRjWOJe2-NJ8h1OJftmPw4IGg.KpPChNpgUKlbuX1vdnV9On6g9QaLP9Mhk_BSk5aOfNY&dib_tag=se&keywords=elegoo+saturn+4&qid=1765036157&sprefix=elegoo+saturn+%2Caps%2C124&sr=8-2-spons&aref=Wcaykye8nW&sp_csd=d2lkZ2V0TmFtZT1zcF9waG9uZV9zZWFyY2hfYXRm&psc=1" target="_blank" rel="noopener">Elegoo Saturn 4</a></div>
               </div>
             </div>
           </li>
@@ -178,8 +188,8 @@
             <div class="item">
               <div class="num">3</div>
               <div class="content">
-                <div class="title-line">Mando Pro Astro Bot (solo si ≤ 65€)</div>
-                <div class="links"><a href="https://direct.playstation.com/es-es/buy-accessories/dualsense-wireless-controller-astro-bot-joyful-limited-edition" target="_blank" rel="noopener">DualSense edición Astro Bot</a></div>
+                <div class="title-line">MANDO PRO ASTRO BOT (Solo si vale 65€ o menos)</div>
+                <div class="links"><a href="https://direct.playstation.com/es-es/buy-accessories/dualsense-wireless-controller-astro-bot-joyful-limited-edition" target="_blank" rel="noopener">DualSense Astro Bot</a></div>
               </div>
             </div>
           </li>
@@ -188,8 +198,17 @@
             <div class="item">
               <div class="num">4</div>
               <div class="content">
-                <div class="title-line">Funda móvil nueva</div>
-                <div class="links"><a href="https://dealy.es/xiaomi-15t-pro/167174-456553-housse-xiaomi-15t-pro-khazneh.html#/11-color-negro" target="_blank" rel="noopener">Xiaomi 15T Pro – Khazneh</a></div>
+                <div class="title-line">FUNDA MÓVIL NUEVO (Podéis buscarme otra mejor pero esta no está mal)</div>
+                <div class="links"><a href="https://dealy.es/xiaomi-15t-pro/167174-456553-housse-xiaomi-15t-pro-khazneh.html#/11-color-negro" target="_blank" rel="noopener">Xiaomi 15T Pro — Khazneh</a></div>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="item">
+              <div class="num">5</div>
+              <div class="content">
+                <div class="title-line">REPLICA REAL ANABELLE (No encuentro enlace en el que no esté agotada, buena suerte)</div>
               </div>
             </div>
           </li>
@@ -197,23 +216,14 @@
       </section>
 
       <section>
-        <h2><span class="badge">Moda y coleccionables</span></h2>
-        <ol start="5">
-          <li>
-            <div class="item">
-              <div class="num">5</div>
-              <div class="content">
-                <div class="title-line">Réplica real Annabelle (si la encontráis, buena suerte)</div>
-              </div>
-            </div>
-          </li>
-
+        <h2><span class="badge">⛄🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁⛄</span></h2>
+        <ol start="6">
           <li>
             <div class="item">
               <div class="num">6</div>
               <div class="content">
-                <div class="title-line">Bambas guapas (talla 42)</div>
-                <div class="links"><a href="https://www.bershka.com/es/zapatillas-skate-one-piece-llavero-c0p198068455.html?colorId=001" target="_blank" rel="noopener">One Piece – Bershka</a></div>
+                <div class="title-line">BAMBAS (Algunas guapas) 42 preferiblemente</div>
+                <div class="links"><a href="https://www.bershka.com/es/zapatillas-skate-one-piece-llavero-c0p198068455.html?colorId=001&utm_source=google&utm_medium=cpc&utm_campaign=BSK_PER_AO_GADS_ES_SHOPPING_GENERIC_MIX_MAN&gad_source=1&gad_campaignid=12548983837&gbraid=0AAAAADySmvuD4WRGl8TlHJIm6MnEIXmAm&gclid=CjwKCAiAxc_JBhA2EiwAFVs7XHEq0eJXAuFHuJT6FIFdN0DbkdhPB62fcAyjBhbY4x_8ShZGAW526RoC8YUQAvD_BwE" target="_blank" rel="noopener">Bershka — One Piece</a></div>
               </div>
             </div>
           </li>
@@ -222,11 +232,15 @@
             <div class="item">
               <div class="num">7</div>
               <div class="content">
-                <div class="title-line">Tazas frikis</div>
+                <div class="title-line">TAZAS</div>
                 <div class="links">
-                  <a href="https://frikiverso.es/es/amigo-invisible/1817-paladone-stranger-things-taza-con-diseno-de-hellfire-club-5055964791209.html" target="_blank" rel="noopener">Stranger Things – Hellfire Club</a>
-                  <a href="https://frikiverso.es/es/5200-abystyle-one-piece-mug-3d-350ml-tonneau-3665361028406.html" target="_blank" rel="noopener">One Piece – Taza 3D</a>
-                  <a href="https://frikiverso.es/es/6934-grupo-erik-bowl-one-piece-manga-sombrero-de-paja-tazas-desayuno-500ml-tazones-desayuno-grandes-cuencos-ideal-reposteria-y-8435497294212.html" target="_blank" rel="noopener">One Piece – Bowl Sombrero de Paja</a>
+                  <a href="https://frikiverso.es/es/amigo-invisible/1817-paladone-stranger-things-taza-con-diseno-de-hellfire-club-5055964791209.html" target="_blank" rel="noopener">Stranger Things — Hellfire Club</a>
+                </div>
+				<div class="links">
+                  <a href="https://frikiverso.es/es/5200-abystyle-one-piece-mug-3d-350ml-tonneau-3665361028406.html" target="_blank" rel="noopener">One Piece — Mug 3D</a>              
+                </div>
+				<div class="links">
+                  <a href="https://frikiverso.es/es/6934-grupo-erik-bowl-one-piece-manga-sombrero-de-paja-tazas-desayuno-500ml-tazones-desayuno-grandes-cuencos-ideal-reposteria-y-8435497294212.html" target="_blank" rel="noopener">One Piece — Bowl Sombrero de Paja</a>
                 </div>
               </div>
             </div>
@@ -236,7 +250,7 @@
             <div class="item">
               <div class="num">8</div>
               <div class="content">
-                <div class="title-line">Hora de Aventuras Card Wars (reedición española; difícil de encontrar)</div>
+                <div class="title-line">HORA DE AVENTURAS CARD WARS — REEDICIÓN ESPAÑOLA, SUPER CHUNGO DE ENCONTRAR</div>
               </div>
             </div>
           </li>
@@ -245,8 +259,8 @@
             <div class="item">
               <div class="num">9</div>
               <div class="content">
-                <div class="title-line">Tarot guapísimo</div>
-                <div class="links"><a href="https://arcanabarcelona.com/en/products/the-marigold-tarot?variant=50498611315014" target="_blank" rel="noopener">The Marigold Tarot</a></div>
+                <div class="title-line">UN TAROT (Si quiero aprender a echar el Tarot, pero quiero una guapísimo, no un mojón)</div>
+                <div class="links"><a href="https://arcanabarcelona.com/en/products/the-marigold-tarot?variant=50498611315014&country=ES&currency=EUR&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&gad_source=1&gad_campaignid=23191200192&gbraid=0AAAAA_3r2uLy03kd47_6sdtrCJc4iIYme&gclid=CjwKCAiAxc_JBhA2EiwAFVs7XAVhWdQw6Ow5p66SklVkKeBONCwh3O_RuUufOcHamnlsHiFRcmQKvxoCBF8QAvD_BwE" target="_blank" rel="noopener">The Marigold Tarot</a></div>
               </div>
             </div>
           </li>
@@ -255,17 +269,8 @@
             <div class="item">
               <div class="num">10</div>
               <div class="content">
-                <div class="title-line">Cualquier cosa de la tienda oficial de Lord of the Mysteries</div>
-                <div class="links"><a href="https://lordofthemysteriesmerch.com/es" target="_blank" rel="noopener">Merch oficial</a></div>
-              </div>
-            </div>
-          </li>
-
-          <li>
-            <div class="item">
-              <div class="num">11</div>
-              <div class="content">
-                <div class="title-line">Impresión personalizada de Lord of the Mysteries (volumen 1 en tapa dura, edición custom)</div>
+                <div class="title-line">Cualquier fumada de la tienda oficial de Lord of the Mysteries</div>
+                <div class="links"><a href="https://lordofthemysteriesmerch.com/es" target="_blank" rel="noopener">Tienda oficial</a></div>
               </div>
             </div>
           </li>
@@ -273,51 +278,148 @@
       </section>
 
       <section>
-        <h2><span class="badge">Experiencias y varios</span></h2>
-        <ol start="12">
+        <h2><span class="badge">🧦🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🧦</span></h2>
+        <ol start="11">
           <li>
-            <div class="item"><div class="num">12</div><div class="content"><div class="title-line">Una trompeta (¡Viva la Semana Santa!)</div></div></div>
-          </li>
-
-          <!-- 13: omitimos cualquier mención de uso dañino; si quieres, lo reformulamos como láser de grabado para DIY -->
-          <li>
-            <div class="item"><div class="num">13</div><div class="content"><div class="title-line">Láser de grabado 5.5W para DIY (≈400€)</div></div></div>
-          </li>
-
-          <li>
-            <div class="item"><div class="num">14</div><div class="content"><div class="title-line">Mesa hidráulica regulable con motor, superficie magnética y gestión de cables</div></div></div>
+            <div class="item">
+              <div class="num">11</div>
+              <div class="content">
+                <div class="title-line">NOVELACA PERSONALIZADA - LORD OF THE MYSTERIES</div>
+                <div class="meta"> SI tenéis los cojones, de conseguirme una impresión personalizada de lord of the mysteries, que está la novela en Español en nova traducida, porque el libro oficial en español no existe, en tapa dura con decoración custom hecha por alguna empresa to guapa, solo el primer volumen, os hago un hijo</div>
+              </div>
+            </div>
           </li>
 
           <li>
-            <div class="item"><div class="num">15</div><div class="content"><div class="title-line">Cama ortopédica termo‑regulable para Odencito 🐶 (≈300€)</div></div></div>
+            <div class="item">
+              <div class="num">12</div>
+              <div class="content">
+                <div class="title-line">Una trompeta, sí... Estoy to loco. Viva la Semana Santa</div>
+              </div>
+            </div>
           </li>
 
           <li>
-            <div class="item"><div class="num">16</div><div class="content"><div class="title-line">Surtido gigante de chucherías japonesas y europeas</div></div></div>
+            <div class="item">
+              <div class="num">13</div>
+              <div class="content">
+                <div class="title-line">Un láser de 5500MW para autodefensa contra gitanos (≈400€)</div>
+                <div class="meta">Muy difícil de encontrar y caro</div>
+              </div>
+            </div>
           </li>
 
           <li>
-            <div class="item"><div class="num">17</div><div class="content"><div class="title-line">Plan con Andrea: SPA o visita especial</div></div></div>
+            <div class="item">
+              <div class="num">14</div>
+              <div class="content">
+                <div class="title-line">Una mesa para cuando me mudé, hidráulica (motor y altura regulable), magnética, y que permita esconder los cables</div>
+              </div>
+            </div>
           </li>
 
           <li>
-            <div class="item"><div class="num">18</div><div class="content"><div class="title-line">Invitación a probar snowboard 🏂</div></div></div>
+            <div class="item">
+              <div class="num">15</div>
+              <div class="content">
+                <div class="title-line">Para mi odencito, una cama ortopédica de perro gigante, termo regulable (300€)</div>
+                <div class="meta">Es lo que vale, pero es que es un perro grande; por su salud (este regalo puede ser de todos)</div>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+		<h2><span class="badge">🎄🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎄</span></h2>
+        <ol start="16">
+          <li>
+            <div class="item">
+              <div class="num">16</div>
+              <div class="content">
+                <div class="title-line">Un surtido de chucherías gigante japonesas y europeas</div>
+                <div class="meta">Hay una tienda donde venden los caramelos de Ed, Edd y Eddy. Guarrerías pa mí, que tengo el metabolismo bueno.</div>
+              </div>
+            </div>
           </li>
 
           <li>
-            <div class="item"><div class="num">19</div><div class="content"><div class="title-line">Manga entero en edición guaparda</div></div></div>
+            <div class="item">
+              <div class="num">17</div>
+              <div class="content">
+                <div class="title-line">Alguna fumada para ir con Andrea, rollo SPA, o visita al Titanic con submarino</div>
+              </div>
+            </div>
           </li>
 
           <li>
-            <div class="item"><div class="num">20</div><div class="content"><div class="title-line">Carbón de azúcar 🍭</div></div></div>
+            <div class="item">
+              <div class="num">18</div>
+              <div class="content">
+                <div class="title-line">El ski me gusta, pero todavía no es momento... Invitarme a probar el snow estaría de puta madre</div>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="item">
+              <div class="num">19</div>
+              <div class="content">
+                <div class="title-line">Algún manga entero pero en edición guaparda</div>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="item">
+              <div class="num">20</div>
+              <div class="content">
+                <div class="title-line">Carbón de azúcar</div>
+              </div>
+            </div>
           </li>
         </ol>
       </section>
 
       <div class="footer">
-        Gracias por vuestra magia. Si cumplís media lista, os hago un monumento en el salón. 🐪✨
+        Si cumplís con media lista, os hago un monumento en el salón. 🐪✨ ¡Felices Reyes!
       </div>
     </main>
   </div>
+
+  <!-- Silueta de Reyes Magos en el desierto (SVG) -->
+  <div class="desert" aria-hidden="true">
+    <svg viewBox="0 0 1200 200" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="sand" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#8b5e34"/>
+          <stop offset="100%" stop-color="#5c3d22"/>
+        </linearGradient>
+      </defs>
+      <!-- Dunas -->
+      <path d="M0,160 C200,140 300,180 500,160 C700,140 900,180 1200,160 L1200,200 L0,200 Z" fill="url(#sand)"/>
+      <!-- Reyes Magos silueta básica -->
+      <g fill="#1f2937">
+        <path d="M150,140 c10,-20 20,-20 40,0 c-10,10 -30,10 -40,0 z"/>
+        <rect x="190" y="120" width="20" height="30"/>
+        <circle cx="200" cy="115" r="8"/>
+        <path d="M260,140 c12,-18 22,-18 44,0 c-10,10 -34,10 -44,0 z"/>
+        <rect x="300" y="118" width="22" height="32"/>
+        <circle cx="311" cy="112" r="8"/>
+        <path d="M380,140 c12,-18 22,-18 44,0 c-10,10 -34,10 -44,0 z"/>
+        <rect x="420" y="118" width="22" height="32"/>
+        <circle cx="431" cy="112" r="8"/>
+      </g>
+      <!-- Estrella de Belén animada -->
+      <g>
+        <polygon points="1080,40 1090,65 1118,68 1098,86 1104,112 1080,98 1056,112 1062,86 1042,68 1070,65"
+                 fill="#facc15" opacity=".9">
+          <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="transform" type="scale" values="1;1.15;1" dur="2s" repeatCount="indefinite" additive="sum"/>
+        </polygon>
+      </g>
+    </svg>
+  </div>
+
 </body>
 </html>
