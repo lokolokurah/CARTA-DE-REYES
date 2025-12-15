@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Carta de Reyes — Super Navideña</title>
+  <title>Carta de Reyes</title>
 
   <!-- Tipografías -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet"/>
@@ -85,10 +85,48 @@
     /* Secciones */
     section{margin:1.4rem 0 1rem}
     h2{font-family:"Playfair Display", serif; font-size:1.35rem; margin:0 0 .9rem; color:#0f172a}
-    .badge{
-      background:linear-gradient(135deg, #cfffda, #ffb0b0);
-      color:#fff; font-weight:700; border-radius:10px; padding:.25rem .6rem; font-size:.95rem;
-    }
+    .badge {
+	transform: translateX(-50%);
+	left: 50%;
+  background: linear-gradient(135deg, #d32f2f, #388e3c); /* rojo y verde navideños */
+  color: #fff; 
+  font-weight: 700;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  font-family: "Great Vibes", cursive; /* tipografía festiva */
+  border: 2px solid gold; /* borde dorado */
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7); /* brillo dorado */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4); /* relieve */
+  display: inline-block;
+  position: relative;
+}
+
+/* efecto de estrellitas */
+.badge::before {
+  content: "★";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  color: gold;
+  font-size: 1.5rem;
+  animation: twinkle 1.5s infinite alternate;
+}
+
+.badge::after {
+  content: "★";
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  color: gold;
+  font-size: 1.5rem;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1.2); }
+}
 
     /* Lista */
     ol{list-style:none; padding:0; margin:0; display:grid; gap:1rem}
@@ -148,12 +186,19 @@
     <main class="page" role="document" aria-label="Carta de Reyes">
       <header>
         <div class="script-title">Queridos Reyes Magos</div>
-        <h1 class="title">Carta de Reyes — JAIMITO</h1>
-        <p class="subtitle">"Por los regalos que vendran después🎄✨" Proverbio de expedicionario...</p>
+		<div style="display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;">
+			<div class="title">🎄</div>
+			<div class="title" style="font-size: 1rem">Me porte como el mejor, mejor que mis hermanos calvitos</div>
+			<div class="title">🎄</div>
+		</div>
+        <p class="subtitle">"Por los regalos que vendran después" Proverbio de expedicionario...</p>
       </header>
 
       <section>
-        <h2><span class="badge">🎅🏿🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎅🏿</span></h2>
         <ol>
           <li>
             <div class="item">
@@ -216,7 +261,7 @@
       </section>
 
       <section>
-        <h2><span class="badge">⛄🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁⛄</span></h2>
+        <h2><span class="badge">🎅 Un rey mago nunca llega tarde a la batalla... Llega justo cuando se lo propone, como bruse willis 🎅</span></h2>
         <ol start="6">
           <li>
             <div class="item">
@@ -278,7 +323,7 @@
       </section>
 
       <section>
-        <h2><span class="badge">🧦🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🧦</span></h2>
+        <h2><span class="badge">🎅 Más vale Baltasar que navaja en mano 🎅</span></h2>
         <ol start="11">
           <li>
             <div class="item">
@@ -331,7 +376,7 @@
       </section>
 
       <section>
-		<h2><span class="badge">🎄🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎁🎄</span></h2>
+		<h2><span class="badge">🎅 Hacia Velen va un burrino sabanero, Belhen con H? O con V? 🎅</span></h2>
         <ol start="16">
           <li>
             <div class="item">
@@ -381,6 +426,20 @@
         </ol>
       </section>
 
+	  <section>
+		<h2><span class="badge">🎅 Todos los caminos llevan a mi carta 🎅</span></h2>
+        <ol start="21">
+          <li>
+            <div class="item">
+              <div class="num">21</div>
+              <div class="content">
+                <div class="title-line">Un teclado, el que tengo esta reventadisimo :(, hay uno de Ako de lord of the mysteries que esta buenardo, quiero que los switches sean de última generación, algun material alienigena</div>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+	
       <div class="footer">
         Si cumplís con media lista, os hago un monumento en el salón. 🐪✨ ¡Felices Reyes!
       </div>
